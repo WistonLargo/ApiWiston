@@ -1,4 +1,4 @@
-package com.example.apiwistonspring.dto;
+package com.example.apiwistonspring.dtos;
 
 import com.example.apiwistonspring.model.entities.Marca;
 import com.example.apiwistonspring.model.entities.Modelo;

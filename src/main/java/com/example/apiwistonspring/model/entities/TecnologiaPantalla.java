@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
-import java.math.BigInteger;
-
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
@@ -23,4 +21,6 @@ public class TecnologiaPantalla {
     private Long referencia;
     @NonNull
     private String tipo;
+    
+    
 }

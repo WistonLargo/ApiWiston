@@ -19,4 +19,12 @@ public class Pantalla {
     private TecnologiaPantalla tecnologiaPantalla;
     @NonNull
     private double pantallaSize;
+
+ 
+	public Long getPantallaId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+    
+    
 }

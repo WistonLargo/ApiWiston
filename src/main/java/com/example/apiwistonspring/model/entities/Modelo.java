@@ -23,4 +23,9 @@ public class Modelo {
     private Long referencia;
     @NonNull
     private String nombre;
+    
+    public Long getMarcaId() {
+		return marca.getId();
+
+	}
 }

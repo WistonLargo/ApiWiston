@@ -25,4 +25,6 @@ public class Procesador {
     private int numeroNucleos;
     @NonNull
     private double gHz_max;
+    
+    
 }

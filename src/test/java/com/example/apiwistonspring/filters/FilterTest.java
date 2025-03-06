@@ -6,7 +6,7 @@ import com.example.apiwistonspring.model.entities.Movil;
 
 class FilterTest {
 	
-		private FilterByAlmacenamiento filter;
+		private Filter filter;
 		private Movil movil1;
 		private Movil movil2;
 	

@@ -10,7 +10,7 @@ public class FilterByMarca extends Filter<String> {
 
 	@Override
 	public boolean filter(Movil item) {
-		return item.getMarcaId().equals(item);
+		return item.getModelo().getMarca().getNombre().equalsIgnoreCase(parameter);
 	}
 
 }

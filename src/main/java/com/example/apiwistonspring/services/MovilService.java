@@ -19,7 +19,6 @@ public class MovilService implements InterfazMovilService {
 
 	@Autowired
 	private MovilRepository movilRepository;
-	private MapDTOFilterToListFilter filterMapper;
 
 	/**
 	 * Obtiene los 5 móviles en tendencia según su popularidad.
@@ -76,12 +75,11 @@ public class MovilService implements InterfazMovilService {
 	}
 
 	public List<Movil> filterMoviles(FilterDTO filterDTO) {
-		List<Filter<?>> filtros = filterMapper.map(filterDTO);
-
-		List<Movil> moviles = movilRepository.findAll();
+		List<Filter<?>> filtros = new MapDTOFilterToListFilter().map(filterDTO);
+		List<Movil> moviles = getAllMoviles();
 
 		for (Filter<?> filtro : filtros) {
-			moviles = moviles.stream().filter(movil -> filtro.filter(movil)).collect(Collectors.toList());
+			moviles = moviles.stream().filter(movil -> filtro.filter(movil)).toList();
 		}
 
 		return moviles;

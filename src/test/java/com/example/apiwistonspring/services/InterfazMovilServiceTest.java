@@ -38,7 +38,7 @@ class InterfazMovilServiceTest {
         Procesador procesador = new Procesador("Snapdragon 888", 123456L, 8, 2.84);
         Dimensiones dimensiones = new Dimensiones(15.0, 7.0, 0.8);
 
-        movil = new Movil(128, dimensiones, LocalDate.now(), 12, true, 200, 599.99, 4, 8,
+        movil = new Movil(128, dimensiones, LocalDate.now(), 12, true, 200, 599.99,4,4, 8,
                 modelo, pantalla, 123456L, procesador);
 
         // Asignamos un ID al movil, ya que en los mocks no se genera automáticamente
@@ -52,7 +52,7 @@ class InterfazMovilServiceTest {
         Movil savedMovil = movilService.saveMovil(movil);
 
         assertNotNull(savedMovil);
-        assertEquals(movil.getAlmacenamiento(), savedMovil.getAlmacenamiento()); // Comprobamos que el almacenamiento es igual
+        assertEquals(movil.getAlmacenamiento(), savedMovil.getAlmacenamiento());
     }
 
     @Test
@@ -62,7 +62,7 @@ class InterfazMovilServiceTest {
         Optional<Movil> foundMovil = movilService.getMovilById(1L);
 
         assertTrue(foundMovil.isPresent());
-        assertEquals(1L, foundMovil.get().getId()); // Comprobamos que el ID del movil es correcto
+        assertEquals(1L, foundMovil.get().getId());
     }
 
     @Test
@@ -89,7 +89,7 @@ class InterfazMovilServiceTest {
 
         Movil movilExistente = new Movil(128, new Dimensiones(15.0, 7.0, 0.8),
                 LocalDate.now(), 12, true,
-                200, 599.99, 4, 8,
+                200, 599.99,4, 4, 8,
                 modelo, new Pantalla(new TecnologiaPantalla(1L, "LCD"), 6.5),
                 123456L, new Procesador("ProcesadorX", 4L, 4, 2.5));
 
@@ -97,7 +97,7 @@ class InterfazMovilServiceTest {
 
         Movil movilActualizado = new Movil(128, new Dimensiones(15.0, 7.0, 0.8),
                 LocalDate.now(), 12, true,
-                250, 699.99, 5, 8,
+                250, 699.99, 8,5, 8,
                 modelo, new Pantalla(new TecnologiaPantalla(1L, "AMOLED"), 6.7),
                 123456L, new Procesador("NuevoProcesadorX", 5L, 4, 3.0));
 
@@ -106,15 +106,15 @@ class InterfazMovilServiceTest {
         Movil updatedMovil = movilService.updateMovil(1L, movilActualizado);
 
         assertNotNull(updatedMovil);
-        assertEquals(250, updatedMovil.getPeso());  // Verificamos el peso actualizado
-        assertEquals(699.99, updatedMovil.getPrecio());  // Verificamos el precio actualizado
+        assertEquals(250, updatedMovil.getPeso());
+        assertEquals(699.99, updatedMovil.getPrecio());
     }
 
     @Test
     void deleteMovil() {
         when(movilRepository.existsById(1L)).thenReturn(true);
 
-        doNothing().when(movilRepository).deleteById(1L);  // Método para evitar la excepción
+        doNothing().when(movilRepository).deleteById(1L);
 
         movilService.deleteMovil(1L);
 

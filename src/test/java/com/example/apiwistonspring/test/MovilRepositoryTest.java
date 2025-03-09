@@ -31,8 +31,8 @@ public class MovilRepositoryTest {
 
 		Dimensiones dimensiones = new Dimensiones(150.0, 70.0, 8.0); // Ejemplo de dimensiones (alto, ancho, grosor)
 		Marca marca = new Marca("marca");
-		TecnologiaPantalla tecnologiaPantalla = new TecnologiaPantalla(1L,"Amoled");
-		Modelo modelo = new Modelo(marca,1L,"modelo");
+		TecnologiaPantalla tecnologiaPantalla = new TecnologiaPantalla(1.5,"Amoled");
+		Modelo modelo = new Modelo(marca,1.6,"modelo");
 		Pantalla pantalla = new Pantalla(tecnologiaPantalla,6.5);
 		Procesador procesador = new Procesador("Snapdragon 888", 8L,4,3.1);
 

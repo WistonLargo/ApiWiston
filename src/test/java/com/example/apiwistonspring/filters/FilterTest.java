@@ -42,8 +42,8 @@ class FilterTest {
 
 		// Móvil1
 		Marca marca1 = new Marca("Samsung");
-		Modelo modelo1 = new Modelo(marca1, 123456L, "Samsung Galaxy S21");
-		TecnologiaPantalla tecnologiaPantalla1 = new TecnologiaPantalla(101L, "AMOLED");
+		Modelo modelo1 = new Modelo(marca1, 123456.4, "Samsung Galaxy S21");
+		TecnologiaPantalla tecnologiaPantalla1 = new TecnologiaPantalla(101.4, "AMOLED");
 		Pantalla pantalla1 = new Pantalla(tecnologiaPantalla1, 6.2);
 		Procesador procesador1 = new Procesador("Snapdragon 888", 123456L, 8, 2.84);
 		Dimensiones dimensiones1 = new Dimensiones(15.0, 7.0, 0.8);
@@ -52,8 +52,8 @@ class FilterTest {
 
 		// Móvil 2 - iPhone 13
 		Marca marca2 = new Marca("Apple");
-		Modelo modelo2 = new Modelo(marca2, 123457L, "iPhone 13");
-		TecnologiaPantalla tecnologiaPantalla2 = new TecnologiaPantalla(102L, "OLED");
+		Modelo modelo2 = new Modelo(marca2, 1234573.6, "iPhone 13");
+		TecnologiaPantalla tecnologiaPantalla2 = new TecnologiaPantalla(102.6, "OLED");
 		Pantalla pantalla2 = new Pantalla(tecnologiaPantalla2, 6.5);
 		Procesador procesador2 = new Procesador("A15 Bionic", 123457L, 6, 3.2);
 		Dimensiones dimensiones2 = new Dimensiones(16.0, 8.0, 0.9);
@@ -62,8 +62,8 @@ class FilterTest {
 
 		// Móvil 3 - Xiaomi Mi 11
 		Marca marca3 = new Marca("Xiaomi");
-		Modelo modelo3 = new Modelo(marca3, 123458L, "Xiaomi Mi 11");
-		TecnologiaPantalla tecnologiaPantalla3 = new TecnologiaPantalla(103L, "AMOLED");
+		Modelo modelo3 = new Modelo(marca3, 123458.7, "Xiaomi Mi 11");
+		TecnologiaPantalla tecnologiaPantalla3 = new TecnologiaPantalla(103.6, "AMOLED");
 		Pantalla pantalla3 = new Pantalla(tecnologiaPantalla3, 6.7);
 		Procesador procesador3 = new Procesador("Snapdragon 888", 123458L, 8, 2.84);
 		Dimensiones dimensiones3 = new Dimensiones(15.5, 7.2, 0.9);

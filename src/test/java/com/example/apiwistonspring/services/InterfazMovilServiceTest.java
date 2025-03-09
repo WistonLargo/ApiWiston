@@ -32,8 +32,8 @@ class InterfazMovilServiceTest {
         MockitoAnnotations.initMocks(this);
 
         Marca marca = new Marca("Samsung");
-        Modelo modelo = new Modelo(marca, 123456L, "Samsung Galaxy S21");
-        TecnologiaPantalla tecnologiaPantalla = new TecnologiaPantalla(101L, "AMOLED");
+        Modelo modelo = new Modelo(marca, 123456.4, "Samsung Galaxy S21");
+        TecnologiaPantalla tecnologiaPantalla = new TecnologiaPantalla(101.5, "AMOLED");
         Pantalla pantalla = new Pantalla(tecnologiaPantalla, 6.2);
         Procesador procesador = new Procesador("Snapdragon 888", 123456L, 8, 2.84);
         Dimensiones dimensiones = new Dimensiones(15.0, 7.0, 0.8);
@@ -85,12 +85,12 @@ class InterfazMovilServiceTest {
         marca.setId(1L);
         marca.setNombre("MarcaX");
 
-        Modelo modelo = new Modelo(marca, 123L, "ModeloX");
+        Modelo modelo = new Modelo(marca, 123.5, "ModeloX");
 
         Movil movilExistente = new Movil(128, new Dimensiones(15.0, 7.0, 0.8),
                 LocalDate.now(), 12, true,
                 200, 599.99,4, 4, 8,
-                modelo, new Pantalla(new TecnologiaPantalla(1L, "LCD"), 6.5),
+                modelo, new Pantalla(new TecnologiaPantalla(1.6, "LCD"), 6.5),
                 123456L, new Procesador("ProcesadorX", 4L, 4, 2.5));
 
         when(movilRepository.findById(1L)).thenReturn(Optional.of(movilExistente));
@@ -98,7 +98,7 @@ class InterfazMovilServiceTest {
         Movil movilActualizado = new Movil(128, new Dimensiones(15.0, 7.0, 0.8),
                 LocalDate.now(), 12, true,
                 250, 699.99, 8,5, 8,
-                modelo, new Pantalla(new TecnologiaPantalla(1L, "AMOLED"), 6.7),
+                modelo, new Pantalla(new TecnologiaPantalla(1.7, "AMOLED"), 6.7),
                 123456L, new Procesador("NuevoProcesadorX", 5L, 4, 3.0));
 
         when(movilRepository.save(movilActualizado)).thenReturn(movilActualizado);

@@ -12,12 +12,13 @@ import java.time.LocalDate;
 @Entity
 public class Movil {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NonNull
 	private int almacenamiento;
 	@NonNull
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "dimensiones_id")
 	private Dimensiones dimensiones;
 	@NonNull
 	private LocalDate fechaLanzamiento;
@@ -36,15 +37,18 @@ public class Movil {
 	@NonNull
 	private int numeroDeVisitas;
 	@NonNull
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "modelo_id")
 	private Modelo modelo;
 	@NonNull
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "pantalla_id")
 	private Pantalla pantalla;
 	@NonNull
 	private Long referencia;
 	@NonNull
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "procesador_id")
 	private Procesador procesador;
 
 	public Long getMarcaId() {

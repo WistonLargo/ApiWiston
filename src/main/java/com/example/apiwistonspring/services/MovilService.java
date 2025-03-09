@@ -26,7 +26,7 @@ public class MovilService implements InterfazMovilService {
 	 * @return Lista con los 5 móviles más populares.
 	 */
 	public List<Movil> obtenerMovilesEnTendencia() {
-		return movilRepository.findTop5ByOrderByPuntuacionDesc();
+		return movilRepository.findTop5ByOrderByNumeroDeVisitasDesc();
 	}
 
 	public Movil saveMovil(Movil movil) {

@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MovilRepository extends JpaRepository<Movil, Long> {
 	
-	List<Movil>findTop5ByOrderByPuntuacionDesc();
+	List<Movil>findTop5ByOrderByNumeroDeVisitasDesc();
 }

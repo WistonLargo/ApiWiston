@@ -80,7 +80,7 @@ class FilterTest {
 	@Test
 	void filterMovilesByAlmacenamiento() {
 		// Creamos el filtro que busca por almacenamiento
-		FilterDTO filterDTO = new FilterDTO(128, null, null, null, null, null, null, null, null, null);
+		FilterDTO filterDTO = new FilterDTO(100.00, 400.00,128, null, null, null, null, null, null, null, null, null);
 		List<Movil> filtrados = movilService.filterMoviles(filterDTO);
 		assertEquals(2, filtrados.size());
 
@@ -88,7 +88,7 @@ class FilterTest {
 
 	@Test
 	void filterMovilesByMarca() {
-		FilterDTO filterDTO = new FilterDTO(null, "Apple", null, null, null, null, null, null, null, null);
+		FilterDTO filterDTO = new FilterDTO(100.00, 400.00,null, "Apple", null, null, null, null, null, null, null, null);
 		List<Movil> filtradoMarca = movilService.filterMoviles(filterDTO);
 		assertEquals(1, filtradoMarca.size());
 
@@ -96,8 +96,15 @@ class FilterTest {
 
 	@Test
 	void filterMovilesMultipleFilters() {
-		FilterDTO filterDTO = new FilterDTO(128, "Samsung", null, null, null, null, null, null, null, null);
+		FilterDTO filterDTO = new FilterDTO(100.00, 400.00,128, "Samsung", null, null, null, null, null, null, null, null);
 		List<Movil> filtradoMulti = movilService.filterMoviles(filterDTO);
 		assertEquals(1, filtradoMulti.size());
+	}
+	
+	@Test
+	void filtrarPorPrecio() {
+		FilterDTO filterDTO = new FilterDTO(100.00, 400.00, null, null, null, null, null, null, null, null, null, null);
+		List<Movil> filtradoMulti = movilService.filterMoviles(filterDTO);
+		assertEquals(2, filtradoMulti.size());
 	}
 }

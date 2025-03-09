@@ -10,6 +10,7 @@ import com.example.apiwistonspring.filters.FilterByMarca;
 import com.example.apiwistonspring.filters.FilterByMegapixeles;
 import com.example.apiwistonspring.filters.FilterByNfc;
 import com.example.apiwistonspring.filters.FilterByPantallaSize;
+import com.example.apiwistonspring.filters.FilterByPrecio;
 import com.example.apiwistonspring.filters.FilterByProcesNombre;
 import com.example.apiwistonspring.filters.FilterByPuntuacion;
 import com.example.apiwistonspring.filters.FilterByRam;
@@ -24,6 +25,9 @@ public class MapDTOFilterToListFilter {
 		// hay que agregar el que siempre es oblgatorio que es el de precio, los demás
 		// se van añadiendo solo si están en el dto
 
+		if(dto.precioMin() <= 0 && dto.precioMax() <=0) {
+			filtros.add(new FilterByPrecio(new Intervalo<>(dto.precioMin(), dto.precioMax())));
+		}
 		if (dto.almacenamiento() != null) {
 			filtros.add(new FilterByAlmacenamiento(dto.almacenamiento()));
 		}

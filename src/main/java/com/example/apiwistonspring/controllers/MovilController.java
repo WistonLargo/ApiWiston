@@ -1,4 +1,5 @@
 package com.example.apiwistonspring.controllers;
+import com.example.apiwistonspring.dtos.FilterDTO;
 import com.example.apiwistonspring.model.entities.Movil;
 import com.example.apiwistonspring.services.MovilService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,11 @@ public class MovilController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+    
+	@GetMapping("filter")
+	public ResponseEntity<List<Movil>> getMethodName(@RequestBody FilterDTO movilFilter) {
+		return ResponseEntity.ok(movilService.filterMoviles(movilFilter));
+	}
+
 }
 

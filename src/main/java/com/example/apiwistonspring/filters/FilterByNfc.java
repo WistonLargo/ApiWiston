@@ -2,9 +2,9 @@ package com.example.apiwistonspring.filters;
 
 import com.example.apiwistonspring.model.entities.Movil;
 
-public class filterByNfc extends Filter<Boolean>{
+public class FilterByNfc extends Filter<Boolean>{
 
-	public filterByNfc(Boolean parameter) {
+	public FilterByNfc(Boolean parameter) {
 		super(parameter);
 	}
 

@@ -34,6 +34,8 @@ public class Movil {
 	@NonNull
 	private int ram;
 	@NonNull
+	private int numeroDeVisitas;
+	@NonNull
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Modelo modelo;
 	@NonNull

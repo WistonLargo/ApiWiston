@@ -25,9 +25,8 @@ public class MapDTOFilterToListFilter {
 		// hay que agregar el que siempre es oblgatorio que es el de precio, los demás
 		// se van añadiendo solo si están en el dto
 
-		if(dto.precioMin() <= 0 && dto.precioMax() <=0) {
-			filtros.add(new FilterByPrecio(new Intervalo<>(dto.precioMin(), dto.precioMax())));
-		}
+		filtros.add(new FilterByPrecio(new Intervalo<>(dto.precioMin(), dto.precioMax())));
+
 		if (dto.almacenamiento() != null) {
 			filtros.add(new FilterByAlmacenamiento(dto.almacenamiento()));
 		}
@@ -59,7 +58,7 @@ public class MapDTOFilterToListFilter {
 		if (dto.ramMax() != null && dto.ramMin() != null) {
 			filtros.add(new FilterByRam(new Intervalo<>(dto.ramMin(), dto.ramMax())));
 		}
-		
+
 		if (dto.tecPantalla() != null) {
 			filtros.add(new FilterByTecPantalla(dto.tecPantalla()));
 		}

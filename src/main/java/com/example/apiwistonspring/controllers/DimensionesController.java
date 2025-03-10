@@ -19,7 +19,7 @@ public class DimensionesController implements GenericController<Dimensiones> {
     private DimensionesRepository dimensionesRepository;
 
 
-	@GetMapping("/getAll")
+	@GetMapping("/get")
     @ResponseBody
     @Override
 	public ResponseEntity<List<Dimensiones>> get() {

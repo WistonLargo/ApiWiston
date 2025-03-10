@@ -4,13 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.apiwistonspring.model.entities.Pantalla;
 import com.example.apiwistonspring.model.entities.Procesador;
@@ -18,20 +12,22 @@ import com.example.apiwistonspring.model.repositories.PantallaRepository;
 import com.example.apiwistonspring.model.repositories.ProcesadorRepository;
 import com.example.apiwistonspring.unimplemented.controller.GenericController;
 
+@RestController
+@RequestMapping("/procesador")
 public class ProcesadorController implements GenericController<Procesador> {
 
 	@Autowired
     private ProcesadorRepository procesadorRepository;
 
 
-	@GetMapping("/apiWiston/Pantalla")
+	@GetMapping("/get")
     @ResponseBody
     @Override
 	public ResponseEntity<List<Procesador>> get() {
 		return ResponseEntity.ok(procesadorRepository.findAll());
 	}
 	
-	@PostMapping("/apiWiston/Pantalla")
+	@PostMapping("/post")
 	@Override
 	public ResponseEntity<Procesador> post(@RequestBody Procesador procesador) {
 		if (procesadorRepository.existsById(procesador.getId())) {
@@ -41,7 +37,7 @@ public class ProcesadorController implements GenericController<Procesador> {
         return ResponseEntity.ok(procesadorRepository.save(procesador));
     }
 
-	@PutMapping("/apiWiston/Pantalla")
+	@PutMapping("/put")
 	@Override
 	public ResponseEntity<Procesador> put(@RequestBody Procesador procesador) {
 		if (procesadorRepository.existsById(procesador.getId())) {
@@ -51,9 +47,9 @@ public class ProcesadorController implements GenericController<Procesador> {
         return ResponseEntity.notFound().build();
     }
 
-	@DeleteMapping("/apiWiston/Pantalla/{id}")
+	@DeleteMapping("/delete")
 	@Override
-	public ResponseEntity<Procesador> delete(@PathVariable long id) {
+	public ResponseEntity<Procesador> delete(@RequestParam Long id) {
 		 if (procesadorRepository.existsById(id)) {
 			 procesadorRepository.deleteById(id);
         	 return ResponseEntity.ok().build();

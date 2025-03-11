@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
+@Table(name = "marca")
 public class Marca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

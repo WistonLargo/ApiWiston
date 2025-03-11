@@ -6,19 +6,25 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import com.example.apiwistonspring.model.entities.Dimensiones;
+import com.example.apiwistonspring.model.entities.ERole;
 import com.example.apiwistonspring.model.entities.Marca;
 import com.example.apiwistonspring.model.entities.Modelo;
 import com.example.apiwistonspring.model.entities.Movil;
 import com.example.apiwistonspring.model.entities.Pantalla;
 import com.example.apiwistonspring.model.entities.Procesador;
+import com.example.apiwistonspring.model.entities.RoleUser;
 import com.example.apiwistonspring.model.entities.TecnologiaPantalla;
+import com.example.apiwistonspring.model.entities.UserEntity;
 import com.example.apiwistonspring.model.repositories.DimensionesRepository;
 import com.example.apiwistonspring.model.repositories.MarcaRepository;
 import com.example.apiwistonspring.model.repositories.ModeloRepository;
 import com.example.apiwistonspring.model.repositories.MovilRepository;
 import com.example.apiwistonspring.model.repositories.PantallaRepository;
 import com.example.apiwistonspring.model.repositories.ProcesadorRepository;
+import com.example.apiwistonspring.model.repositories.RoleRepository;
 import com.example.apiwistonspring.model.repositories.TecnologiaPantallaRepository;
+import com.example.apiwistonspring.model.repositories.UserRepository;
+import com.example.apiwistonspring.services.UserService;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
@@ -33,10 +39,14 @@ public class Populate {
 	private PantallaRepository pantallaRepository;
 	private ProcesadorRepository procesadorRepository;
 	private TecnologiaPantallaRepository tecnologiaPantallaRepository;
+	private final RoleRepository roleRepository;
+	private final UserRepository userRepository;
 	
+
 	public Populate(DimensionesRepository dimensionesRepository, MarcaRepository marcaRepository,
 			ModeloRepository modeloRepository, MovilRepository movilRepository, PantallaRepository pantallaRepository,
-			ProcesadorRepository procesadorRepository, TecnologiaPantallaRepository tecnologiaPantallaRepository) {
+			ProcesadorRepository procesadorRepository, TecnologiaPantallaRepository tecnologiaPantallaRepository,
+			RoleRepository roleRepository, UserRepository userRepository) {
 		super();
 		this.dimensionesRepository = dimensionesRepository;
 		this.marcaRepository = marcaRepository;
@@ -45,6 +55,9 @@ public class Populate {
 		this.pantallaRepository = pantallaRepository;
 		this.procesadorRepository = procesadorRepository;
 		this.tecnologiaPantallaRepository = tecnologiaPantallaRepository;
+		this.roleRepository = roleRepository;
+		this.userRepository = userRepository;
+		populateRoles();
 	}
 	@Transactional
 	@PostConstruct
@@ -111,7 +124,15 @@ public class Populate {
         movilRepository.save(movil9);
         Movil movil10 = new Movil(64, dimensiones2, LocalDate.of(2019, 2, 14), 12, false, 130.0, 299.99, 60, 2, 140, modelo1, pantalla2, 10010L, procesador3);
         movilRepository.save(movil10);
-
         
+        UserEntity usuario = new UserEntity("ivan@gmail.com","ivan","1234");
+        userRepository.save(usuario);
+        
+	}
+        public void populateRoles() {
+    		for (ERole erole : ERole.values()) {
+    			if (roleRepository.findByName(erole).isEmpty())
+    				roleRepository.save(new RoleUser(erole));
+    		} 
 	}
 }

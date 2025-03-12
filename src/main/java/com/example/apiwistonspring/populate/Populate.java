@@ -24,7 +24,6 @@ import com.example.apiwistonspring.model.repositories.ProcesadorRepository;
 import com.example.apiwistonspring.model.repositories.RoleRepository;
 import com.example.apiwistonspring.model.repositories.TecnologiaPantallaRepository;
 import com.example.apiwistonspring.model.repositories.UserRepository;
-import com.example.apiwistonspring.services.UserService;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
@@ -59,6 +58,7 @@ public class Populate {
 		this.userRepository = userRepository;
 		populateRoles();
 	}
+	
 	@Transactional
 	@PostConstruct
     public void populate(){

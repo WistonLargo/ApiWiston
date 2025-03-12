@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class SolicitudService {
@@ -44,5 +45,9 @@ public class SolicitudService {
 
         solicitud.setEstado(nuevoEstado);
         return solicitudRepository.save(solicitud);
+    }
+
+    public List<Solicitud> consultarSolicitudesPorFecha(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+        return solicitudRepository.findByFechaCreacionBetween(fechaInicio, fechaFin);
     }
 }

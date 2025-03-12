@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @RestController
 @RequestMapping("/solicitudes")
 public class SolicitudController {
@@ -29,5 +32,18 @@ public class SolicitudController {
             @RequestParam EstadoSolicitud estado) {
         Solicitud solicitud = solicitudService.responderSolicitud(solicitudId, estado);
         return ResponseEntity.ok(solicitud);
+    }
+
+
+    @GetMapping("/consultar")
+    public ResponseEntity<List<Solicitud>> consultarSolicitudesPorFecha(@RequestParam LocalDateTime fechaInicio, @RequestParam LocalDateTime fechaFin) {
+        List<Solicitud> solicitudes = solicitudService.consultarSolicitudesPorFecha(fechaInicio, fechaFin);
+        return ResponseEntity.ok(solicitudes);
+    }
+
+    @GetMapping("/numero-de-solicitudes")
+    public ResponseEntity<Integer> numeroDeSolicitudesPorFecha(@RequestParam LocalDateTime fechaInicio, @RequestParam LocalDateTime fechaFin) {
+        List<Solicitud> numeroDeSolicitudes = solicitudService.consultarSolicitudesPorFecha(fechaInicio, fechaFin);
+        return ResponseEntity.ok(numeroDeSolicitudes.size());
     }
 }

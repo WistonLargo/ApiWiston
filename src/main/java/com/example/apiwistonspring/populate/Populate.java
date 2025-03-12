@@ -143,10 +143,6 @@ public class Populate {
 		UserEntity usuario = new UserEntity("ivan@gmail.com", "ivan", "1234");
 		userRepository.save(usuario);
 
-		Anuncio anuncioventa1 = new AnuncioVenta(usuario, movil10, Estado.Experimentado, LocalDate.of(2025, 3, 1),
-				199.99);
-		anuncioRepository.save(anuncioventa1);
-
 	}
 
 	public void populateRoles() {

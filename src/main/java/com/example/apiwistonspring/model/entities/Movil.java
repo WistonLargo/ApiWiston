@@ -11,6 +11,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity
 public class Movil {
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -51,6 +53,10 @@ public class Movil {
 	@JoinColumn(name = "procesador_id")
 	private Procesador procesador;
 
+	@NonNull
+    private String estado;
+	@NonNull
+    private String tipoCambio;
 	public Long getMarcaId() {
 		return modelo.getMarcaId();
 	}

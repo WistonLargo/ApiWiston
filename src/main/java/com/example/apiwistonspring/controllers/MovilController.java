@@ -1,10 +1,13 @@
 package com.example.apiwistonspring.controllers;
 import com.example.apiwistonspring.dtos.FilterDTO;
+import com.example.apiwistonspring.dtos.MovilAnuncioDTO;
 import com.example.apiwistonspring.model.entities.Movil;
+import com.example.apiwistonspring.services.AnuncioService;
 import com.example.apiwistonspring.services.MovilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +18,20 @@ public class MovilController {
 
     @Autowired
     private MovilService movilService;
-
+    @Autowired
+    private AnuncioService anuncioService;
+    
+    @PreAuthorize("hasRole('USER')")
+    @PostMapping("/publicar-anuncio")
+    public ResponseEntity<Movil> publicarAnuncio(@RequestBody MovilAnuncioDTO movilAnuncioDTO) {
+        try {
+            Movil movil = anuncioService.publicarAnuncio(movilAnuncioDTO.movilId(), movilAnuncioDTO.estado(), movilAnuncioDTO.tipoCambio());
+            return ResponseEntity.ok(movil);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+    
     @GetMapping
     public List<Movil> getAllMoviles() {
         return movilService.getAllMoviles();

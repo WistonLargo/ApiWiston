@@ -5,6 +5,7 @@ import com.example.apiwistonspring.model.entities.Solicitud;
 import com.example.apiwistonspring.services.SolicitudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -36,12 +37,14 @@ public class SolicitudController {
 
 
     @GetMapping("/consultar")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Solicitud>> consultarSolicitudesPorFecha(@RequestParam LocalDateTime fechaInicio, @RequestParam LocalDateTime fechaFin) {
         List<Solicitud> solicitudes = solicitudService.consultarSolicitudesPorFecha(fechaInicio, fechaFin);
         return ResponseEntity.ok(solicitudes);
     }
 
     @GetMapping("/numero-de-solicitudes")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Integer> numeroDeSolicitudesPorFecha(@RequestParam LocalDateTime fechaInicio, @RequestParam LocalDateTime fechaFin) {
         List<Solicitud> numeroDeSolicitudes = solicitudService.consultarSolicitudesPorFecha(fechaInicio, fechaFin);
         return ResponseEntity.ok(numeroDeSolicitudes.size());

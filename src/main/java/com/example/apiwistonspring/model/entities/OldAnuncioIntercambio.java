@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class AnuncioIntercambio extends Anuncio {
+public class OldAnuncioIntercambio extends OldAnuncio {
 	@ManyToOne
 	@JoinColumn(name = "movil_id")
 	@NonNull

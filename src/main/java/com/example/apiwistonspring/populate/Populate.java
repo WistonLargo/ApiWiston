@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
-import com.example.apiwistonspring.model.entities.Anuncio;
-import com.example.apiwistonspring.model.entities.AnuncioVenta;
+import com.example.apiwistonspring.model.entities.OldAnuncio;
+import com.example.apiwistonspring.model.entities.OldAnuncioVenta;
 import com.example.apiwistonspring.model.entities.Dimensiones;
 import com.example.apiwistonspring.model.entities.ERole;
 import com.example.apiwistonspring.model.entities.Estado;

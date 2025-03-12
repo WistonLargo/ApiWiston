@@ -25,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 @Data
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Anuncio {
+public class OldAnuncio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;

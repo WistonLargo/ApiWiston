@@ -38,17 +38,17 @@ public class MovilRepositoryTest {
 
 		// Insertar datos de prueba
 		Movil movil1 = new Movil(128, dimensiones, LocalDate.of(2022, 1, 1), 50, true, 200.0, 899.99, 90, 8, 150,
-				modelo, pantalla, 10001L, procesador);
-		Movil movil2 = new Movil(64, dimensiones, LocalDate.of(2021, 6, 10), 48, true, 180.0, 599.99, 80, 6, 200,
-				modelo, pantalla, 10002L, procesador);
-		Movil movil3 = new Movil(256, dimensiones, LocalDate.of(2023, 3, 15), 108, true, 220.0, 1199.99, 95, 12, 50,
-				modelo, pantalla, 10003L, procesador);
-		Movil movil4 = new Movil(32, dimensiones, LocalDate.of(2020, 8, 5), 24, false, 150.0, 299.99, 70, 4, 300,
-				modelo, pantalla, 10004L, procesador);
-		Movil movil5 = new Movil(512, dimensiones, LocalDate.of(2022, 11, 25), 200, true, 240.0, 1499.99, 100, 16, 250,
-				modelo, pantalla, 10005L, procesador);
-		Movil movil6 = new Movil(128, dimensiones, LocalDate.of(2021, 12, 30), 64, true, 210.0, 749.99, 85, 8, 400,
-				modelo, pantalla, 10006L, procesador);
+	            modelo, pantalla, 10001L, procesador, "Disponible", "Venta");
+	    Movil movil2 = new Movil(64, dimensiones, LocalDate.of(2021, 6, 10), 48, true, 180.0, 599.99, 80, 6, 200,
+	            modelo, pantalla, 10002L, procesador, "Disponible", "Venta");
+	    Movil movil3 = new Movil(256, dimensiones, LocalDate.of(2023, 3, 15), 108, true, 220.0, 1199.99, 95, 12, 50,
+	            modelo, pantalla, 10003L, procesador, "Disponible", "Venta");
+	    Movil movil4 = new Movil(32, dimensiones, LocalDate.of(2020, 8, 5), 24, false, 150.0, 299.99, 70, 4, 300,
+	            modelo, pantalla, 10004L, procesador, "Disponible", "Venta");
+	    Movil movil5 = new Movil(512, dimensiones, LocalDate.of(2022, 11, 25), 200, true, 240.0, 1499.99, 100, 16, 250,
+	            modelo, pantalla, 10005L, procesador, "Disponible", "Venta");
+	    Movil movil6 = new Movil(128, dimensiones, LocalDate.of(2021, 12, 30), 64, true, 210.0, 749.99, 85, 8, 400,
+	            modelo, pantalla, 10006L, procesador, "Disponible", "Venta");
 
 		movilRepository.save(movil1);
 		movilRepository.save(movil2);

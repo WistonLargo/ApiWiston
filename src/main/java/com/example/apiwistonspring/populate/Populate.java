@@ -104,25 +104,25 @@ public class Populate {
         Modelo modelo3 = new Modelo(marca3,3.4,"Redmi Note 11");
         modeloRepository.save(modelo3);
         
-        Movil movil1 = new Movil(128, dimensiones1, LocalDate.of(2022, 1, 1), 108, true, 180.0, 899.99, 90, 8, 100, modelo1, pantalla1, 10001L, procesador1);
+        Movil movil1 = new Movil(128, dimensiones1, LocalDate.of(2022, 1, 1), 108, true, 180.0, 899.99, 90, 8, 100, modelo1, pantalla1, 10001L, procesador1, "Disponible", "Venta");
         movilRepository.save(movil1);
-        Movil movil2 = new Movil(64, dimensiones2, LocalDate.of(2021, 6, 15), 12, false, 160.0, 599.99, 80, 4, 200, modelo2, pantalla2, 10002L, procesador2);
+        Movil movil2 = new Movil(64, dimensiones2, LocalDate.of(2021, 6, 15), 12, false, 160.0, 599.99, 80, 4, 200, modelo2, pantalla2, 10002L, procesador2, "Vendido", "Intercambio");
         movilRepository.save(movil2);
-        Movil movil3 = new Movil(256, dimensiones3, LocalDate.of(2023, 3, 1), 50, true, 190.0, 1099.99, 95, 6, 150, modelo3, pantalla3, 10003L, procesador3);
+        Movil movil3 = new Movil(256, dimensiones3, LocalDate.of(2023, 3, 1), 50, true, 190.0, 1099.99, 95, 6, 150, modelo3, pantalla3, 10003L, procesador3, "Disponible", "Venta");
         movilRepository.save(movil3);
-        Movil movil4 = new Movil(128, dimensiones1, LocalDate.of(2020, 8, 15), 48, true, 170.0, 799.99, 85, 6, 180, modelo1, pantalla3, 10004L, procesador1);
+        Movil movil4 = new Movil(128, dimensiones1, LocalDate.of(2020, 8, 15), 48, true, 170.0, 799.99, 85, 6, 180, modelo1, pantalla3, 10004L, procesador1, "Reservado", "Venta");
         movilRepository.save(movil4);
-        Movil movil5 = new Movil(64, dimensiones2, LocalDate.of(2022, 11, 5), 64, false, 150.0, 499.99, 75, 4, 250, modelo2, pantalla1, 10005L, procesador2);
+        Movil movil5 = new Movil(64, dimensiones2, LocalDate.of(2022, 11, 5), 64, false, 150.0, 499.99, 75, 4, 250, modelo2, pantalla1, 10005L, procesador2, "Disponible", "Intercambio");
         movilRepository.save(movil5);
-        Movil movil6 = new Movil(256, dimensiones1, LocalDate.of(2023, 1, 10), 108, true, 210.0, 1199.99, 100, 12, 300, modelo3, pantalla1, 10006L, procesador1);
+        Movil movil6 = new Movil(256, dimensiones1, LocalDate.of(2023, 1, 10), 108, true, 210.0, 1199.99, 100, 12, 300, modelo3, pantalla1, 10006L, procesador1, "Vendido", "Venta");
         movilRepository.save(movil6);
-        Movil movil7 = new Movil(32, dimensiones2, LocalDate.of(2020, 5, 25), 16, false, 140.0, 399.99, 65, 3, 120, modelo1, pantalla2, 10007L, procesador2);
+        Movil movil7 = new Movil(32, dimensiones2, LocalDate.of(2020, 5, 25), 16, false, 140.0, 399.99, 65, 3, 120, modelo1, pantalla2, 10007L, procesador2, "Disponible", "Intercambio");
         movilRepository.save(movil7);
-        Movil movil8 = new Movil(128, dimensiones3, LocalDate.of(2022, 3, 20), 48, true, 180.0, 699.99, 85, 6, 220, modelo2, pantalla3, 10008L, procesador3);
+        Movil movil8 = new Movil(128, dimensiones3, LocalDate.of(2022, 3, 20), 48, true, 180.0, 699.99, 85, 6, 220, modelo2, pantalla3, 10008L, procesador3, "Vendido", "Venta");
         movilRepository.save(movil8);
-        Movil movil9 = new Movil(256, dimensiones1, LocalDate.of(2021, 4, 8), 64, true, 200.0, 799.99, 90, 8, 190, modelo3, pantalla1, 10009L, procesador2);
+        Movil movil9 = new Movil(256, dimensiones1, LocalDate.of(2021, 4, 8), 64, true, 200.0, 799.99, 90, 8, 190, modelo3, pantalla1, 10009L, procesador2, "Disponible", "Intercambio");
         movilRepository.save(movil9);
-        Movil movil10 = new Movil(64, dimensiones2, LocalDate.of(2019, 2, 14), 12, false, 130.0, 299.99, 60, 2, 140, modelo1, pantalla2, 10010L, procesador3);
+        Movil movil10 = new Movil(64, dimensiones2, LocalDate.of(2019, 2, 14), 12, false, 130.0, 299.99, 60, 2, 140, modelo1, pantalla2, 10010L, procesador3, "Reservado", "Venta");
         movilRepository.save(movil10);
         
         UserEntity usuario = new UserEntity("ivan@gmail.com","ivan","1234");

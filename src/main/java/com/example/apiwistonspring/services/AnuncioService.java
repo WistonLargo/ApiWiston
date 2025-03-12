@@ -1,37 +1,43 @@
 package com.example.apiwistonspring.services;
 
-import com.example.apiwistonspring.model.entities.Movil;
-import com.example.apiwistonspring.model.repositories.MovilRepository;
+import com.example.apiwistonspring.model.entities.Anuncio;
+import com.example.apiwistonspring.model.repositories.AnuncioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class AnuncioService {
 
     @Autowired
-    private MovilRepository movilRepository;
+    private AnuncioRepository anuncioRepository;
 
-    public Movil publicarAnuncio(Long movilId, String estado, String tipoCambio) {
-        if (estado == null || tipoCambio == null) {
-            throw new IllegalArgumentException("El estado y tipo de cambio son obligatorios");
-        }
+    public List<Anuncio> getAllAnuncios() {
+        return anuncioRepository.findAll();
+    }
 
-        Optional<Movil> movilOpt = movilRepository.findById(movilId);
-        if (movilOpt.isEmpty()) {
-            throw new RuntimeException("Movil no encontrado");
+    public Optional<Anuncio> getAnuncioById(Long id) {
+        return anuncioRepository.findById(id);
+    }
+
+    public Anuncio saveAnuncio(Anuncio anuncio) {
+        return anuncioRepository.save(anuncio);
+    }
+
+    public Anuncio updateAnuncio(Long id, Anuncio anuncioDetails) {
+        Optional<Anuncio> anuncio = anuncioRepository.findById(id);
+        if (anuncio.isPresent()) {
+            Anuncio updatedAnuncio = anuncio.get();
+            updatedAnuncio.setEstado(anuncioDetails.getEstado());
+            updatedAnuncio.setTipoCambio(anuncioDetails.getTipoCambio());
+            return anuncioRepository.save(updatedAnuncio);
         }
-        
-        Movil movil = movilOpt.get();
-        
-        if (!estado.equals("Disponible") && !estado.equals("Vendido") && !estado.equals("Reservado")) {
-            throw new IllegalArgumentException("Estado no valido");
-        }
-        if (!tipoCambio.equals("Venta") && !tipoCambio.equals("Intercambio")) {
-            throw new IllegalArgumentException("Tipo de cambio no valido");
-        }
-        movil.setEstado(estado);
-        movil.setTipoCambio(tipoCambio);
-        return movilRepository.save(movil);
+        return null;
+    }
+
+    public void deleteAnuncio(Long id) {
+        anuncioRepository.deleteById(id);
     }
 }

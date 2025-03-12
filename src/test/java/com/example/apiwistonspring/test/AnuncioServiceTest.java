@@ -1,36 +1,30 @@
 package com.example.apiwistonspring.test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
 
-import java.time.LocalDate;
-import java.util.Optional;
+import com.example.apiwistonspring.model.entities.*;
+import com.example.apiwistonspring.model.repositories.AnuncioRepository;
+import com.example.apiwistonspring.services.AnuncioService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import com.example.apiwistonspring.model.entities.Dimensiones;
-import com.example.apiwistonspring.model.entities.Marca;
-import com.example.apiwistonspring.model.entities.Modelo;
-import com.example.apiwistonspring.model.entities.Movil;
-import com.example.apiwistonspring.model.entities.Pantalla;
-import com.example.apiwistonspring.model.entities.Procesador;
-import com.example.apiwistonspring.model.entities.TecnologiaPantalla;
-import com.example.apiwistonspring.model.repositories.MovilRepository;
-import com.example.apiwistonspring.services.AnuncioService;
+import java.time.LocalDate;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 class AnuncioServiceTest {
 
     @Mock
-    private MovilRepository movilRepository;
+    private AnuncioRepository anuncioRepository;
 
     @InjectMocks
     private AnuncioService anuncioService;
 
     private Movil movil;
+    private Anuncio anuncio;
 
     @BeforeEach
     void setUp() {
@@ -42,62 +36,56 @@ class AnuncioServiceTest {
         Dimensiones dimensiones = new Dimensiones(15.0, 7.0, 0.8);
 
         movil = new Movil(128, dimensiones, LocalDate.now(), 12, true, 200, 599.99, 4, 4, 8,
-                modelo, pantalla, 123456L, procesador, "Disponible", "Venta");
+                modelo, pantalla, 123456L, procesador);
         movil.setId(1L);
 
+        anuncio = new Anuncio(movil, "Intacto", "Venta");
     }
 
     @Test
-    void publicarAnuncioEstadoValido() {
-        String estado = "Disponible";
-        String tipoCambio = "Venta";
+    void saveAnuncio() {
+        when(anuncioRepository.save(anuncio)).thenReturn(anuncio);
 
-        when(movilRepository.findById(1L)).thenReturn(Optional.of(movil));
-        when(movilRepository.save(movil)).thenReturn(movil);
+        Anuncio savedAnuncio = anuncioService.saveAnuncio(anuncio);
 
-        Movil movilPublicado = anuncioService.publicarAnuncio(1L, estado, tipoCambio);
-
-        assertNotNull(movilPublicado);
-        assertEquals(estado, movilPublicado.getEstado());
-        assertEquals(tipoCambio, movilPublicado.getTipoCambio());
+        assertNotNull(savedAnuncio);
+        assertEquals(anuncio.getEstado(), savedAnuncio.getEstado());
+        assertEquals(anuncio.getTipoCambio(), savedAnuncio.getTipoCambio());
     }
 
     @Test
-    void publicarAnuncioEstadoInvalido() {
-        String estado = "NoDisponible";
-        String tipoCambio = "Venta";
+    void getAnuncioById() {
+        when(anuncioRepository.findById(1L)).thenReturn(Optional.of(anuncio));
 
-        when(movilRepository.findById(1L)).thenReturn(Optional.of(movil));
+        Optional<Anuncio> foundAnuncio = anuncioService.getAnuncioById(1L);
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            anuncioService.publicarAnuncio(1L, estado, tipoCambio);
-        });
-        assertEquals("Estado no valido", exception.getMessage());
+        assertTrue(foundAnuncio.isPresent());
+        assertEquals(1L, foundAnuncio.get().getId());
     }
 
     @Test
-    void publicarAnuncioTipoCambioInvalido() {
-        String estado = "Disponible";
-        String tipoCambio = "Renta";
+    void updateAnuncio() {
+        when(anuncioRepository.findById(1L)).thenReturn(Optional.of(anuncio));
 
-        when(movilRepository.findById(1L)).thenReturn(Optional.of(movil));
+        Anuncio updatedAnuncio = new Anuncio(movil, "Superviviente", "Intercambio");
+        when(anuncioRepository.save(updatedAnuncio)).thenReturn(updatedAnuncio);
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            anuncioService.publicarAnuncio(1L, estado, tipoCambio);
-        });
-        assertEquals("Tipo de cambio no valido", exception.getMessage());
+        Anuncio result = anuncioService.updateAnuncio(1L, updatedAnuncio);
+
+        assertNotNull(result);
+        assertEquals("Superviviente", result.getEstado());
+        assertEquals("Intercambio", result.getTipoCambio());
     }
 
     @Test
-    void publicarAnuncioMovilNoEncontrado() {
-        String estado = "Disponible";
-        String tipoCambio = "Venta";
+    void deleteAnuncio() {
+        when(anuncioRepository.findById(1L)).thenReturn(Optional.of(anuncio));
 
-        when(movilRepository.findById(1L)).thenReturn(Optional.empty());
+        anuncioService.deleteAnuncio(1L);
 
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            anuncioService.publicarAnuncio(1L, estado, tipoCambio);
-        });
-        assertEquals("Movil no encontrado", exception.getMessage());
+        when(anuncioRepository.findById(1L)).thenReturn(Optional.empty());
+        Optional<Anuncio> deletedAnuncio = anuncioService.getAnuncioById(1L);
+
+        assertFalse(deletedAnuncio.isPresent(), "El anuncio debería haber sido eliminado.");
     }
 }

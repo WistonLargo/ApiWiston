@@ -26,7 +26,6 @@ class InterfazMovilServiceTest {
 
     private Movil movil;
 
-
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -39,9 +38,8 @@ class InterfazMovilServiceTest {
         Dimensiones dimensiones = new Dimensiones(15.0, 7.0, 0.8);
 
         movil = new Movil(128, dimensiones, LocalDate.now(), 12, true, 200, 599.99, 4, 4, 8,
-                modelo, pantalla, 123456L, procesador, "Disponible", "Venta");
+                modelo, pantalla, 123456L, procesador);
 
-        // Asignamos un ID al movil, ya que en los mocks no se genera automáticamente
         movil.setId(1L);
     }
 
@@ -75,7 +73,6 @@ class InterfazMovilServiceTest {
 
         assertNotNull(result);
         assertFalse(result.isEmpty());
-
         assertEquals(movil, result.get(0));
     }
 
@@ -91,20 +88,15 @@ class InterfazMovilServiceTest {
                 LocalDate.now(), 12, true,
                 200, 599.99, 4, 4, 8,
                 modelo, new Pantalla(new TecnologiaPantalla(1.6, "LCD"), 6.5),
-                123456L, new Procesador("ProcesadorX", 4L, 4, 2.5),
-                "Disponible", "Venta");
+                123456L, new Procesador("ProcesadorX", 4L, 4, 2.5));
 
-        	when(movilRepository.findById(1L)).thenReturn(Optional.of(movilExistente));
+        when(movilRepository.findById(1L)).thenReturn(Optional.of(movilExistente));
 
-    	Movil movilActualizado = new Movil(128, new Dimensiones(15.0, 7.0, 0.8),
+        Movil movilActualizado = new Movil(128, new Dimensiones(15.0, 7.0, 0.8),
                 LocalDate.now(), 12, true,
                 250, 699.99, 8, 5, 8,
                 modelo, new Pantalla(new TecnologiaPantalla(1.7, "AMOLED"), 6.7),
-                123456L, new Procesador("NuevoProcesadorX", 5L, 4, 3.0),
-                "Disponible", "Venta");
-
-    when(movilRepository.save(movilActualizado)).thenReturn(movilActualizado);
-
+                123456L, new Procesador("NuevoProcesadorX", 5L, 4, 3.0));
 
         when(movilRepository.save(movilActualizado)).thenReturn(movilActualizado);
 
@@ -129,8 +121,4 @@ class InterfazMovilServiceTest {
 
         assertFalse(movilEliminado.isPresent(), "El móvil debería haber sido eliminado.");
     }
-
-
-
-
 }
